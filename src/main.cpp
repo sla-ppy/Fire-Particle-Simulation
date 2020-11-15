@@ -1,19 +1,18 @@
-//============================================================================
-// Name        : SDL.cpp
-// Author      : John Purcell
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
 #include <iostream>
 #include <SDL.h>
 #include <math.h>
+#include <stdlib.h>
+#include <time.h>
+
 #include "Screen.h"
+#include "Swarm.h"
+
 using namespace std;
 using namespace caveofprogramming;
 
 int main(int argc, char* argv[]) {
+
+	srand(time(NULL));
 
 	Screen screen;
 
@@ -21,8 +20,11 @@ int main(int argc, char* argv[]) {
 		cout << "Error initialising SDL." << endl;
 	}
 
+	Swarm swarm;
+
 	while (true) {
 		// Update particles
+		// Draw particles
 
 		// Number of ms since program started
 		int elapsed = SDL_GetTicks();
@@ -31,11 +33,14 @@ int main(int argc, char* argv[]) {
 		unsigned char red = (unsigned char)((1 + sin(elapsed * 0.0002)) * 128);
 		unsigned char blue = (unsigned char)((1 + sin(elapsed * 0.0003)) * 128);
 
-		// Draw particles
-		for (int y = 0; y < Screen::SCREEN_HEIGHT; y++) {
-			for (int x = 0; x < Screen::SCREEN_WIDTH; x++) {
-				screen.setPixel(x, y, red, green, blue);
-			}
+		const Particle* const pParticles = swarm.getParticles();
+		for (int i = 0; i < Swarm::NPARTICLES; i++) {
+			Particle particle = pParticles[i];
+
+			int x = (particle.m_x + 1) * Screen::SCREEN_WIDTH / 2;
+			int y = (particle.m_y + 1) * Screen::SCREEN_HEIGHT / 2;
+
+			screen.setPixel(x, y, red, green, blue);
 		}
 
 		// Draw the screen

@@ -20,10 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\Screen.cpp" />
+    <ClCompile Include="src\Swarm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Particle.h" />
     <ClInclude Include="src\Screen.h" />
+    <ClInclude Include="src\Swarm.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
