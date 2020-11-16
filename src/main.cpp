@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 		// Number of ms since program started
 		int elapsed = SDL_GetTicks();
 
-		screen.clear();
+		//screen.clear();
 		swarm.update(elapsed);
 
 		unsigned char green = (unsigned char)((1 + sin(elapsed * 0.0001)) * 128);
@@ -46,6 +46,9 @@ int main(int argc, char* argv[]) {
 
 			screen.setPixel(x, y, red, green, blue);
 		}
+
+		// Box blur
+		screen.boxBlur();
 
 		// Draw the screen
 		screen.update();
